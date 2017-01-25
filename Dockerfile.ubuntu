@@ -1,0 +1,20 @@
+FROM ubuntu:latest
+MAINTAINER Lrk <sfxelrick@gmail.com>
+
+RUN apt-get update && apt-get install -y make unrar-free autoconf automake libtool \
+	gcc g++ gperf flex bison texinfo gawk ncurses-dev  python-dev python sed \
+	git unzip bash help2man wget bzip2 python-serial libexpat-dev libtool
+
+RUN apt-get clean
+
+RUN adduser esptoolchain
+
+USER esptoolchain
+
+WORKDIR /home/esptoolchain/ 
+
+RUN git clone --recursive https://github.com/pfalcon/esp-open-sdk.git
+
+WORKDIR esp-open-sdk
+
+RUN make STANDALONE=y

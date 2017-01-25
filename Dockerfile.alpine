@@ -1,0 +1,15 @@
+FROM alpine:latest
+MAINTAINER Lrk <sfxelrick@gmail.com>
+
+RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories  
+RUN apk --update add patch
+RUN apk --no-cache add make unrar autoconf automake libtool gcc g++ gperf flex \
+		bison texinfo gawk ncurses-dev  python-dev python sed git unzip bash \
+		help2man wget bzip2 py-serial expat-dev
+RUN adduser -D esptoolchain
+USER esptoolchain
+WORKDIR /home/esptoolchain/ 
+
+RUN git clone --recursive https://github.com/pfalcon/esp-open-sdk.git
+WORKDIR esp-open-sdk
+RUN make STANDALONE=y
