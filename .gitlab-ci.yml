@@ -1,6 +1,8 @@
 image: "alpine:latest"
 before_script:
-  - apk update && apk add make unrar autoconf automake libtool gcc g++ gperf flex bison texinfo gawk ncurses-dev  python-dev python sed git unzip bash help2man wget bzip2
+  - echo http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories  
+  - apk --update add patch
+  - apk --no-cache add make unrar autoconf automake libtool gcc g++ gperf flex bison texinfo gawk ncurses-dev  python-dev python sed git unzip bash help2man wget bzip2 py-serial  
   - adduser -D esptoolchain
   - su esptoolchain
   - cd ~
