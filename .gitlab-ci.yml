@@ -1,8 +1,8 @@
+image: "alpine:latest"
 before_script:
-  - apt-get update && apt-get install -y make unrar-free autoconf automake libtool gcc g++ gperf flex bison texinfo gawk ncurses-dev libexpat-dev python-dev python python-serial sed git unzip bash help2man wget bzip2 
-  - ls -l /
-  - git clone --recursive https://github.com/pfalcon/esp-open-sdk.git
-  - cd esp-open-sdk
+  - apk update && apk add make unrar autoconf automake libtool gcc g++ gperf flex bison texinfo gawk ncurses-dev  python-dev python sed git unzip bash help2man wget bzip2
+  - adduser -D esptoolchain && su esptoolchain && cd ~
+  - git clone --recursive https://github.com/pfalcon/esp-open-sdk.git && cd esp-open-sdk
   - make
 
 
